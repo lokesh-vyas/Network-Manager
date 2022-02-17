@@ -53,6 +53,12 @@ extension TopHeadlineListView: UICollectionViewDataSource {
         cell?.articleModel = viewModel.data?.articles[indexPath.row]
         return cell ?? UICollectionViewCell()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let detailViewController = DetailViewController.instantiate(fromAppStoryboard: .main)
+        detailViewController.articleData = viewModel.data?.articles[indexPath.row]
+        self.navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 
 // MARK: - Collection View Flow Layout Delegate
